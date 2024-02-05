@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./usersApp.style.css";
 import UsersTable from "../../components/usersTable/UsersTable";
+import NewUser from "../../components/newUser/NewUser";
 
 const UsersApp = () => {
   const [usersList, setUsersList] = useState([]);
@@ -21,11 +22,17 @@ const UsersApp = () => {
     getUsers();
   }, []);
 
+  const addUser = (user) => {
+    setUsersList([...usersList, user]);
+  };
+
   const deleteHandler = (id) => {
     setUsersList(usersList.filter((el) => el.id !== id));
   };
+
   return (
     <>
+      <NewUser addUser={addUser} />
       <UsersTable usersList={usersList} deleteHandler={deleteHandler} />
     </>
   );
