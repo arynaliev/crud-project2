@@ -10,7 +10,7 @@ const UsersApp = () => {
       const response = await fetch(
         "https://jsonplaceholder.typicode.com/users"
       );
-      const data = response.json();
+      const data = await response.json();
       setUsersList(data);
     } catch (err) {
       console.log("error:", err);
@@ -20,9 +20,13 @@ const UsersApp = () => {
   useEffect(() => {
     getUsers();
   }, []);
+
+  const deleteHandler = (id) => {
+    setUsersList(usersList.filter((el) => el.id !== id));
+  };
   return (
     <>
-      <UsersTable usersList={usersList} />
+      <UsersTable usersList={usersList} deleteHandler={deleteHandler} />
     </>
   );
 };
