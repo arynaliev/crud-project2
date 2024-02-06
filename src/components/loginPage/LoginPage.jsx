@@ -7,14 +7,15 @@ const creds = {
 };
 
 const LoginPage = () => {
-  const { user, setUser } = useState({ username: "", password: "" });
-  const { setUser: updatedUser } = useContext(UserContext);
+  const [user, setUser] = useState({ username: "", password: "" });
+  const { setUser: updateUser, setIsLoggedIn } = useContext(UserContext);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (user.username === creds.username && user.password === creds.password) {
       console.log("correct user creds");
-      updatedUser(user);
+      setIsLoggedIn(true);
+      updateUser(user);
     } else {
       alert("try again");
     }
