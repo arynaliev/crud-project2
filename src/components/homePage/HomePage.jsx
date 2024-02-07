@@ -22,14 +22,18 @@ const HomePage = () => {
   return (
     <div className="home-page">
       <nav className="nav-bar">
-        <div>
+        <div style={{ display: "flex", gap: "1rem" }}>
           <p>Home</p>
           <p>About Us</p>
         </div>
         {isLoggedIn ? (
-          <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+          <button id="logout-btn" onClick={() => setIsLoggedIn(false)}>
+            Logout
+          </button>
         ) : (
-          <button onClick={() => setIsLoggedIn(true)}>Login</button>
+          <button id="login-btn" onClick={() => setIsLoggedIn(true)}>
+            Login
+          </button>
         )}
       </nav>
       {isLoggedIn ? null : <LoginPage />}
